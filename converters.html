@@ -15,6 +15,11 @@
     <button type="button" onclick="hex_to_bin();">Convert to bin</button>
     <h3>Bin: <span id="bina"></span></h3>
 
+    <h1>Decimal to Binary</h1>
+    <input type="text" placeholder="Type decimal number" id="dec_input">
+    <button type="button" onclick="decimal_to_bin();">Convert to bin</button>
+    <h3>Bin: <span id="dec"></span></h3>
+
     <script>
         function bin_to_hex() {
         // Selecting the input element and get its value 
@@ -36,34 +41,66 @@
     
         var out = "";
             for(var c of number) {
-            switch(c) {
-                case '0': out += "0000"; break;
-                case '1': out += "0001"; break;
-                case '2': out += "0010"; break;
-                case '3': out += "0011"; break;
-                case '4': out += "0100"; break;
-                case '5': out += "0101"; break;
-                case '6': out += "0110"; break;
-                case '7': out += "0111"; break;
-                case '8': out += "1000"; break;
-                case '9': out += "1001"; break;
-                case 'a': out += "1010"; break;
-                case 'A': out += "1010"; break;
-                case 'b': out += "1011"; break;
-                case 'B': out += "1011"; break;
-                case 'c': out += "1100"; break;
-                case 'C': out += "1100"; break;
-                case 'd': out += "1101"; break;
-                case 'D': out += "1101"; break;
-                case 'e': out += "1110"; break;
-                case 'E': out += "1110"; break;
-                case 'f': out += "1111"; break;
-                case 'F': out += "1111"; break;
-                default: return "";
+              switch(c) {
+                  case '0': out += "0000"; break;
+                  case '1': out += "0001"; break;
+                  case '2': out += "0010"; break;
+                  case '3': out += "0011"; break;
+                  case '4': out += "0100"; break;
+                  case '5': out += "0101"; break;
+                  case '6': out += "0110"; break;
+                  case '7': out += "0111"; break;
+                  case '8': out += "1000"; break;
+                  case '9': out += "1001"; break;
+                  case 'a': out += "1010"; break;
+                  case 'A': out += "1010"; break;
+                  case 'b': out += "1011"; break;
+                  case 'B': out += "1011"; break;
+                  case 'c': out += "1100"; break;
+                  case 'C': out += "1100"; break;
+                  case 'd': out += "1101"; break;
+                  case 'D': out += "1101"; break;
+                  case 'e': out += "1110"; break;
+                  case 'E': out += "1110"; break;
+                  case 'f': out += "1111"; break;
+                  case 'F': out += "1111"; break;
+                  default: return "";
+                }
             }
-    }
+        out = insert_underscores(out);
         document.getElementById("bina").innerHTML = out;
-        // return hexa;
+      }
+      
+      function decimal_to_bin() {
+        let x = document.getElementById("dec_input").value;
+        let bin = 0;
+        let rem, i = 1, step = 1;
+        while (x != 0) {
+            rem = x % 2;
+            x = parseInt(x / 2);
+            bin = bin + rem * i;
+            i = i * 10;
+        }
+
+        bin = insert_underscores(bin);
+        document.getElementById("dec").innerHTML = bin;
+      }
+      
+      function insert_underscores(str){
+        let str_out = str + '';    //convert to string first
+        str_out = str_out.split(''); //convert to array/list
+        let count = 0;
+        let n_of_places = 4;            //number of places after which you want underscores
+        for (let j = 0; j < str_out.length; j++){
+          count = count + 1;
+          if (count % n_of_places == 0 && j != str_out.length-1)
+            str_out[j] = str_out[j] + "_";
+          else
+            str_out[j] = str_out[j];
+        }
+
+        str_out = str_out.join("");   //convert to string again
+        return str_out;               //string with underscores after 4 places
       }
     </script>
   </body>
