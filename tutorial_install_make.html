@@ -1,0 +1,24 @@
+<style>
+    code {
+      font-family: Consolas,"courier new";
+      color: crimson;
+      background-color: #f1f1f1;
+      padding: 2px;
+      font-size: 105%;
+    }
+    </style>
+    
+<h2 id="how-to-install-make-for-makefiles-command-in-windows-">How to install <code>make</code> (for Makefiles) command in Windows?</h2>
+<p>Here are the steps:  </p>
+<ol>
+<li>Press Windows or start button and search for PowerShell and open it as administrator.  </li>
+<li>Run the command <code>Get-ExecutionPolicy</code>. If you see <strong>Restricted</strong>, the run <code>Set-ExecutionPolicy AllSigned</code> or <code>Set-ExecutionPolicy Bypass -Scope Process</code>  </li>
+<li><p>In the 3rd step, run the following command:<br><code>Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://community.chocolatey.org/install.ps1&#39;))</code>   </p>
+</li>
+<li><p>Wait for the command to be completed. If there are no errors found, you have installed choco in your computer. Otherwise, search for the errors, resolve them and again run the step 3.  </p>
+</li>
+<li><p>In the final step, run the following command:<br><code>choco install make</code>  </p>
+</li>
+</ol>
+<p>Wait for the above command to be completed. If it ran successfully, you have installed <code>make</code> command in your computer. Close the PowerShell and again open it. Run the command <code>make --version</code>. Make sure there are no errors now.  </p>
+<p>Enjoy it :)</p>
